@@ -1,0 +1,23 @@
+---
+
+# Default variables
+service_objects:
+  - {name: ftp, protocol: tcp, dst_port: 21, tag: SVC File Access, description: FTP}
+  - {name: ssh, protocol: tcp, dst_port: 22, tag: SVC Remote Access, description: Secure Shell}
+  - {name: telnet, protocol: tcp, dst_port: 23, tag: SVC Remote Access, description: Telnet}
+  - {name: dns-udp, protocol: udp, dst_port: 53, tag: SVC Network Services, description: DNS over UDP}
+  - {name: dns-tcp, protocol: tcp, dst_port: 53, tag: SVC Network Services, description: DNS over TCP}
+  - {name: tftp, protocol: udp, dst_port: 69, tag: SVC File Access, description: Trivial FTP}
+  - {name: http, protocol: tcp, dst_port: 80, tag: SVC Web Access, description: HTTP}
+  - {name: ntp, protocol: udp, dst_port: 123, tag: SVC Network Services, description: Network Time Protocol}
+  - {name: ldap-udp, protocol: udp, dst_port: 389, tag: SVC Authentication, description: Lightweight Directory Access Protocol}
+  - {name: ldap-tcp, protocol: tcp, dst_port: 389, tag: SVC Authentication, description: Lightweight Directory Access Protocol}
+  - {name: https, protocol: tcp, dst_port: 443, tag: SVC Web Access, description: HTTPS}
+  - {name: smb, protocol: tcp, dst_port: 445, tag: SVC File Access, description: Server Message Block}
+  - {name: smtps, protocol: tcp, dst_port: 465, tag: SVC Email, description: Secure SMTP}
+  - {name: ldaps, protocol: tcp, dst_port: 636, tag: SVC Authentication, description: Lightweight Directory Access Protocol over TL}
+  - {name: rdp, protocol: tcp, dst_port: 3389, tag: SVC Remote Access, description: Remote Desktop Protocol}
+  - {name: TCP High Ports, protocol: tcp, dst_port: 1024-65535, tag: SVC Uncategorized, description: TCP High Ports}
+  - {name: UDP High Ports, protocol: udp, dst_port: 1024-65535, tag: SVC Uncategorized, description: UDP High Ports}
+
+...

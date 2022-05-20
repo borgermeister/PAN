@@ -1,0 +1,20 @@
+galaxy_info:
+  author: 'Bjørn-Vegar Borge'
+  description: 'Palo Alto Networks firewall provisioning'
+  company: 'Netsecurity'
+
+  license: 'GLWTPL'
+
+  min_ansible_version: '2.1'
+
+  platforms:
+    - name: 'PAN-OS'
+      versions:
+        - 'all'
+
+  galaxy_tags:
+    - 'paloaltonetworks'
+    - 'security'
+
+dependencies:
+  - pan_admin_roles

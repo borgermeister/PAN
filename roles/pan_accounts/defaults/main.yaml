@@ -1,0 +1,14 @@
+---
+
+# Default variables
+administrators:
+  - admin_user: ansible
+    admin_pass: changeme
+    role_profile: ansible
+
+# These variables should be placed in a vault file
+
+# How tho aquire the API key for ansible user account
+# curl -k -X GET "https://<pan_ip_or_url>/api/?type=keygen&user=<username>&password=<password>"
+
+...

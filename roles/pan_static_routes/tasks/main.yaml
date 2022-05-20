@@ -1,0 +1,15 @@
+---
+
+# STATIC ROUTES
+- name: Create static route - default
+  paloaltonetworks.panos.panos_static_route:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name }}'
+    destination: '{{ item.destination }}'
+    nexthop: '{{ item.nexthop }}'
+    interface: '{{ item.interface }}'
+    virtual_router: '{{ item.virtual_router | default(omit) }}'
+    state: 'present'
+  loop: '{{ static_routes }}' # host variable
+
+...

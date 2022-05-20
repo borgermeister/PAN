@@ -1,0 +1,6 @@
+---
+
+# Default variables
+admin_role_name: ansible
+
+...

@@ -1,0 +1,14 @@
+---
+
+# ACCOUNTS
+- name: Create new administrator accounts
+  paloaltonetworks.panos.panos_administrator:
+    provider: '{{ palo_provider }}'
+    admin_username: '{{ item.admin_user }}'
+    admin_password: '{{ item.admin_pass }}'
+    role_profile: '{{ item.role_profile | default(omit) }}'
+#    superuser: true
+  loop: '{{ administrators }}' # Variable is located under group_vars/firewalls/vault.yaml
+  no_log: true
+
+...

@@ -1,0 +1,26 @@
+---
+
+# ADMIN ROLES
+- name: Create ansible admin role
+  paloaltonetworks.panos.panos_type_cmd:
+    provider: '{{ palo_provider }}'
+    cmd: set
+    xpath: |
+      /config/shared/admin-role
+    element: |
+      <entry name='{{ admin_role_name }}'>
+        <role>
+          <device>
+            <webui/>
+            <xmlapi>
+              <config>enable</config>
+              <op>enable</op>
+              <commit>enable</commit>
+            </xmlapi>
+            <restapi/>
+          </device>
+        </role>
+        <description>'{{ admin_role_name }}' Admin Role</description>
+      </entry>
+
+...

@@ -1,0 +1,33 @@
+---
+
+# LOG FORWARDING PROFILE
+- name: Create log forwarding profile
+  paloaltonetworks.panos.panos_log_forwarding_profile:
+    provider: '{{ palo_provider }}'
+    name: '{{ log_forwarding_profile }}'
+    enhanced_logging: true
+
+# LOG FORWARDING PROFILE MATCH LIST
+- name: Create log forwarding profile match list
+  paloaltonetworks.panos.panos_log_forwarding_profile_match_list:
+    provider: '{{ palo_provider }}'
+    log_forwarding_profile: '{{ log_forwarding_profile }}'
+    name: 'DNS Sinkhole'
+    description: 'Created by Ansible'
+    log_type: 'traffic'
+    filter: '( addr.dst in 99.99.99.99 )'
+
+# LOG FORWARDING PROFILE MATCH LIST ACTION
+- name: Create log forwarding profile match list action
+  paloaltonetworks.panos.panos_log_forwarding_profile_match_list_action:
+    provider: '{{ palo_provider }}'
+    log_forwarding_profile: '{{ log_forwarding_profile }}'
+    log_forwarding_profile_match_list: 'DNS Sinkhole'
+    name: 'Tag source - SINKHOLE'
+    action: 'add-tag'
+    target: 'source-address'
+    registration: 'localhost'
+    tags: ['SINKHOLE']
+    timeout: 300
+
+...

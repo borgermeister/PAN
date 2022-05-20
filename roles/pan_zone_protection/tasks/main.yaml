@@ -1,0 +1,87 @@
+---
+
+# ZONE-PROTECTION
+- name: Create zone-protection profiles
+  paloaltonetworks.panos.panos_type_cmd:
+    provider: '{{ palo_provider }}'
+    cmd: set
+    xpath: |
+      /config/devices/entry[@name='localhost.localdomain']
+      /network/profiles/zone-protection-profile
+    element: |
+      <entry name="TEMPLATE">
+        <flood>
+          <tcp-syn>
+            <enable>yes</enable>
+            <red>
+              <alarm-rate>100</alarm-rate>
+              <activate-rate>200</activate-rate>
+              <maximal-rate>500</maximal-rate>
+            </red>
+          </tcp-syn>
+          <udp>
+            <enable>yes</enable>
+            <red>
+              <alarm-rate>100</alarm-rate>
+              <activate-rate>200</activate-rate>
+              <maximal-rate>500</maximal-rate>
+            </red>
+          </udp>
+          <icmp>
+            <enable>yes</enable>
+            <red>
+              <alarm-rate>100</alarm-rate>
+              <activate-rate>200</activate-rate>
+              <maximal-rate>500</maximal-rate>
+            </red>
+          </icmp>
+          <icmpv6>
+            <enable>yes</enable>
+            <red>
+              <alarm-rate>100</alarm-rate>
+              <activate-rate>200</activate-rate>
+              <maximal-rate>500</maximal-rate>
+            </red>
+          </icmpv6>
+          <other-ip>
+            <enable>yes</enable>
+            <red>
+              <alarm-rate>100</alarm-rate>
+              <activate-rate>200</activate-rate>
+              <maximal-rate>500</maximal-rate>
+            </red>
+          </other-ip>
+        </flood>
+        <scan>
+          <entry name="8003">
+            <action>
+              <block-ip>
+                <track-by>source-and-destination</track-by>
+                <duration>60</duration>
+              </block-ip>
+            </action>
+            <interval>2</interval>
+            <threshold>25</threshold>
+          </entry>
+          <entry name="8001">
+            <action>
+              <block-ip>
+                <track-by>source-and-destination</track-by>
+                <duration>60</duration>
+              </block-ip>
+            </action>
+            <interval>2</interval>
+            <threshold>25</threshold>
+          </entry>
+          <entry name="8002">
+            <action>
+              <alert/>
+            </action>
+            <interval>2</interval>
+            <threshold>25</threshold>
+          </entry>
+        </scan>
+        <discard-icmp-large-packet>yes</discard-icmp-large-packet>
+      </entry>
+
+...

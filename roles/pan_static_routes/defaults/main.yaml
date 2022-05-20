@@ -1,0 +1,11 @@
+---
+
+# Default variables
+static_routes:
+  - name: Default
+    destination: 0.0.0.0/0
+    nexthop: 99.99.99.5
+    interface: ethernet1/1
+    virtual_router: default
+
+...

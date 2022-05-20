@@ -1,0 +1,10 @@
+---
+
+# Default variables
+create_virtual_router: false # Create additional virtual-router?
+
+virtual_router: # Ny virtual-router kan ikke ha interface definert da de enda ikke har blitt definert av playbook
+  - name: changeme
+    interface: []
+
+...

@@ -1,0 +1,12 @@
+---
+
+firewalls:
+  hosts:
+    fw01.justiceleague.local:
+      ansible_host: 10.0.0.1
+
+justiceleague:
+  children:
+    firewalls:
+
+...

@@ -1,0 +1,17 @@
+---
+
+# FACTS
+- name: Gather facts
+  paloaltonetworks.panos.panos_facts:
+    provider: '{{ palo_provider }}'
+    gather_subset:
+      - 'system'
+      - 'interfaces'
+      - 'routing'
+      - 'vr'
+      - 'config'
+      - 'session'
+      - 'ha'
+      - 'vsys'
+
+...

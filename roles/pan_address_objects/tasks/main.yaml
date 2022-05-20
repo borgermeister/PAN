@@ -1,0 +1,14 @@
+---
+
+# ADDRESS OBJECTS
+- name: Create address objects
+  paloaltonetworks.panos.panos_address_object:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name }}'
+    value: '{{ item.value }}'
+    tag: '{{ item.tag }}'
+    description: '{{ item.description }}'
+    state: 'present'
+  loop: '{{ address_objects }}' # host variables
+
+...

@@ -1,0 +1,36 @@
+---
+
+# Default variables
+tags:
+  - {name: ALLOW, color: green, comments: 'Allow Policies'}
+  - {name: DENY, color: red, comments: 'Deny Policies'}
+  - {name: AZURE, color: orange, comments: 'Zone AZURE'}
+  - {name: CLIENTLESS, color: orange, comments: 'Zone CLIENTLESS'}
+  - {name: GLOBALPROTECT, color: orange, comments: 'Zone GLOBALPROTECT'}
+  - {name: INSIDE, color: green, comments: 'Zone INSIDE'}
+  - {name: IOT, color: orange, comments: 'Zone IOT'}
+  - {name: VPN, color: orange, comments: 'Zone VPN'}
+  - {name: OUTSIDE, color: red, comments: 'Zone OUTSIDE'}
+  - {name: GLOBAL, color: red, comments: 'Global'}
+  - {name: LOCAL, color: green, comments: 'Local'}
+  - {name: SINKHOLE, color: maroon, comments: 'Clients accessing DNS sinkhole'}
+  - {name: IOC, color: maroon, comments: 'Indicator of Compromise'}
+  - {name: Domain Policies, color: green, comments: 'Domain Policies'}
+  - {name: Local Policies, color: green, comments: 'Local Policies'}
+  - {name: IoT Policies, color: orange, comments: 'IoT Policies'}
+  - {name: Public Policies, color: red, comments: 'Inbound Internet Policies'}
+  - {name: Internet Policies, color: red, comments: 'Outbound Internet Policies'}
+  - {name: Global Policies, color: copper, comments: 'Global Policies'}
+  - {name: Azure Policies, color: orange, comments: 'Azure Policies'}
+  - {name: VPN Policies, color: orange, comments: 'VPN Policies'}
+  - {name: SVC Web Access, color: light green, comments: 'Web Access Services'}
+  - {name: SVC File Access, color: light green, comments: 'File Access Services'}
+  - {name: SVC Email, color: light green, comments: 'Email Services'}
+  - {name: SVC Network Services, color: light green, comments: 'Network Services'}
+  - {name: SVC Authentication, color: light green, comments: 'Authentication Services'}
+  - {name: SVC Remote Access, color: light green, comments: 'Remote Access Services'}
+  - {name: SVC Tunneling, color: light green, comments: 'Tunneling Services'}
+  - {name: SVC Uncategorized, color: light green, comments: 'Uncategorized Services'}
+  - {name: 'SVC VoIP, Messaging', color: light green, comments: 'VoIP, Messaging Services'}
+
+...

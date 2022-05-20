@@ -1,0 +1,11 @@
+---
+
+# Default variables
+address_objects:
+  - {name: NET4_CLASS_A, value: 10.0.0.0/8, tag: LOCAL, description: 'RFC1918 Class A network'}
+  - {name: NET4_CLASS_B, value: 172.16.0.0/12, tag: LOCAL, description: 'RFC1918 Class B network'}
+  - {name: NET4_CLASS_C, value: 192.168.0.0/16, tag: LOCAL, description: 'RFC1918 Class C network'}
+  - {name: NET6_GLOBAL_UNICAST, value: 2000::/3, tag: GLOBAL, description: 'IPv6 Global Unicast address'}
+  - {name: NET6_LINK-LOCAL, value: fe80::/10, tag: LOCAL, description: 'IPv6 Link-Local address'}
+
+...

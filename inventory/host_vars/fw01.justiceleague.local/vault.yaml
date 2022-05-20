@@ -1,0 +1,9 @@
+---
+
+# Login variables
+vault_username: admin
+vault_password: AutomationIsKing
+vault_api_key: LUFRPT16VmIwQlNEeGZOcmFGQjFhbjRFdn5JQ3RZpOGlVaXBlZS8xOTJ0TXpqTHc9PQ==
+
+# Encrypt vault: ansible-vault encrypt vault.yaml --vault-id pan@prompt
+...

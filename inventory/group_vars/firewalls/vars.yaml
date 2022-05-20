@@ -1,0 +1,75 @@
+---
+
+# Palo Alto group variables
+
+log_forwarding_profile: JusticeLeague LFP
+security_profiles: JusticeLeague
+
+# Uncomment to override role default variables
+# mgmt_profiles:
+#   - {name: PING, ping: true, https: false, ssh: false, userid: false, response_pages: false, permitted_ip: []}
+#   - {name: Management Profile DEFAULT, ping: true, https: false, ssh: false, userid: false, response_pages: false, permitted_ip: []}
+#   - {name: Management Profile CLIENTS, ping: true, https: true, ssh: true, userid: true, response_pages: true, permitted_ip: [10.100.1.0/24, 10.100.255.0/24]}
+#   - {name: Management Profile MGMT-WIFI, ping: true, https: true, ssh: true, userid: true, response_pages: true, permitted_ip: [10.1.1.0/24]}
+#   - {name: Management Profile IOT, ping: true, https: true, ssh: true, userid: true, response_pages: true, permitted_ip: [10.100.100.0/24]}
+#   - {name: Management Profile INTERNET, ping: true, https: false, ssh: false, userid: false, response_pages: false, permitted_ip: []}
+
+# service_objects:
+#   - {name: ftp, protocol: tcp, dst_port: 21, tag: SVC File Access, description: FTP}
+#   - {name: ssh, protocol: tcp, dst_port: 22, tag: SVC Remote Access, description: Secure Shell}
+#   - {name: telnet, protocol: tcp, dst_port: 23, tag: SVC Remote Access, description: Telnet}
+#   - {name: dns-udp, protocol: udp, dst_port: 53, tag: SVC Network Services, description: DNS over UDP}
+#   - {name: dns-tcp, protocol: tcp, dst_port: 53, tag: SVC Network Services, description: DNS over TCP}
+#   - {name: tftp, protocol: udp, dst_port: 69, tag: SVC File Access, description: Trivial FTP}
+#   - {name: http, protocol: tcp, dst_port: 80, tag: SVC Web Access, description: HTTP}
+#   - {name: ntp, protocol: udp, dst_port: 123, tag: SVC Network Services, description: Network Time Protocol}
+#   - {name: ldap-udp, protocol: udp, dst_port: 389, tag: SVC Authentication, description: Lightweight Directory Access Protocol}
+#   - {name: ldap-tcp, protocol: tcp, dst_port: 389, tag: SVC Authentication, description: Lightweight Directory Access Protocol}
+#   - {name: https, protocol: tcp, dst_port: 443, tag: SVC Web Access, description: HTTPS}
+#   - {name: smb, protocol: tcp, dst_port: 445, tag: SVC File Access, description: Server Message Block}
+#   - {name: smtps, protocol: tcp, dst_port: 465, tag: SVC Email, description: Secure SMTP}
+#   - {name: ldaps, protocol: tcp, dst_port: 636, tag: SVC Authentication, description: Lightweight Directory Access Protocol over TL}
+#   - {name: rdp, protocol: tcp, dst_port: 3389, tag: SVC Remote Access, description: Remote Desktop Protocol}
+#   - {name: TCP High Ports, protocol: tcp, dst_port: 1024-65535, tag: SVC Uncategorized, description: TCP High Ports}
+#   - {name: UDP High Ports, protocol: udp, dst_port: 1024-65535, tag: SVC Uncategorized, description: UDP High Ports}
+
+# tags:
+#   - {name: Allow, color: green, comments: 'Allow Policies'}
+#   - {name: Deny, color: red, comments: 'Deny Policies'}
+#   - {name: CLIENTS, color: green, comments: 'Zone CLIENTS'}
+#   - {name: MGMT-WIFI, color: green, comments: 'Zone MGMT-WIFI'}
+#   - {name: INTERNET, color: red, comments: 'Zone INTERNET'}
+#   - {name: CLIENTLESS, color: orange, comments: 'Zone CLIENTLESS'}
+#   - {name: IPSEC, color: orange, comments: 'Zone IPSEC'}
+#   - {name: GLOBALPROTECT, color: orange, comments: 'Zone GLOBALPROTECT'}
+#   - {name: IOT, color: orange, comments: 'Zone IOT'}
+#   - {name: AZURE, color: orange, comments: 'Zone AZURE'}
+#   - {name: SINKHOLE, color: maroon, comments: 'Clients accessing DNS sinkhole'}
+#   - {name: IOC, color: maroon, comments: 'Indicator of Compromise'}
+#   - {name: Domain Policies, color: green, comments: 'Domain Policies'}
+#   - {name: Local Policies, color: green, comments: 'Local Policies'}
+#   - {name: IoT Policies, color: orange, comments: 'IoT Policies'}
+#   - {name: Public Policies, color: red, comments: 'Inbound Internet Policies'}
+#   - {name: Internet Policies, color: red, comments: 'Outbound Internet Policies'}
+#   - {name: Global Policies, color: copper, comments: 'Global Policies'}
+#   - {name: Azure Policies, color: orange, comments: 'Azure Policies'}
+#   - {name: VPN Policies, color: orange, comments: 'VPN Policies'}
+#   - {name: SVC Web Access, color: light green, comments: 'Web Access Services'}
+#   - {name: SVC File Access, color: light green, comments: 'File Access Services'}
+#   - {name: SVC Email, color: light green, comments: 'Email Services'}
+#   - {name: SVC Network Services, color: light green, comments: 'Network Services'}
+#   - {name: SVC Authentication, color: light green, comments: 'Authentication Services'}
+#   - {name: SVC Remote Access, color: light green, comments: 'Remote Access Services'}
+#   - {name: SVC Tunneling, color: light green, comments: 'Tunneling Services'}
+#   - {name: SVC Uncategorized, color: light green, comments: 'Uncategorized Services'}
+#   - {name: 'SVC VoIP, Messaging', color: light green, comments: 'VoIP, Messaging Services'}
+
+# zones:
+#   - CLIENTS
+#   - CLIENTLESS
+#   - GLOBALPROTECT
+#   - INTERNET
+#   - IOT
+#   - IPSEC
+
+...

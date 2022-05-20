@@ -1,0 +1,17 @@
+---
+
+# Palo Alto administrator accounts
+administrators:
+  - admin_user: justiceleague_admin
+    admin_pass: AutomationIsKing
+    role_profile: securityadmin
+  - admin_user: ansible
+    admin_pass: AutomationIsKing
+    role_profile: ansible
+
+# Certificate
+certifiate_name: globalprotect.justiceleague.local
+certificate_pass: SuperSecret123
+
+# Encrypt vault: ansible-vault encrypt vault.yaml --vault-id pan@prompt
+...

@@ -1,0 +1,12 @@
+---
+
+# VIRTUAL ROUTER
+- name: Create Virtual Router
+  paloaltonetworks.panos.panos_virtual_router:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name }}'
+    interface: '{{ item.interface | default(omit) }}'
+  loop: '{{ virtual_router }}' # host variable
+  when: 'create_virtual_router'
+
+...

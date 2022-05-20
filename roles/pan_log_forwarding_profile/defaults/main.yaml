@@ -1,0 +1,6 @@
+---
+
+# Default variables
+log_forwarding_profile: changeme
+
+...

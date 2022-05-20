@@ -1,0 +1,16 @@
+---
+
+# ZONES
+- name: Create zones
+  paloaltonetworks.panos.panos_zone:
+    provider: '{{ palo_provider }}'
+    zone: '{{ item.name }}'
+    mode: 'layer3'
+    interface: '{{ item.interface | default(omit) }}'
+    enable_userid: '{{ item.enable_userid | default(omit) }}' # Device-ID er p.t. ikke supportert
+    zone_profile: '{{ item.zone_profile | default(omit) }}'
+    state: 'present'
+  loop: '{{ zones }}' # group & host variable
+  when: (create_zones) and (not item.name)
+
+...

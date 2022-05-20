@@ -1,0 +1,23 @@
+---
+
+# Default variables
+create_ae: false
+ae_name: ae1
+ae_members:
+  - ethernet1/7
+  - ethernet1/8
+
+create_ethinterfaces: true
+create_subinterfaces: false
+create_loopbackinterfaces: true
+
+interfaces:
+  eth:
+    - {name: ethernet1/1, ip: 99.99.99.6/30, virtual_router: default, zone: OUTSIDE, mgmt_profile: PING, comment: 'Internet'}
+    - {name: ethernet1/2, ip: 172.16.0.1/24, virtual_router: default, zone: INSIDE, mgmt_profile: 'Management Profile DEFAULT', comment: 'LAN'}
+  sub:
+    - {name: ae1.10, tag: 10, ip: 10.0.0.1/24, virtual_router: default, zone: INSIDE, mgmt_profile: 'Management Profile DEFAULT', comment: LAN}
+  loopback:
+    - {name: loopback.1, ip: 10.20.30.40/32, virtual_router: default, zone: INSIDE, mgmt_profile: 'Management Profile DEFAULT', comment: Loopback}
+
+...

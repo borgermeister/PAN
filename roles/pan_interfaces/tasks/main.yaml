@@ -1,0 +1,68 @@
+---
+
+# AGGREGATED INTERFACES
+- name: Create aggregate interface
+  paloaltonetworks.panos.panos_aggregate_interface:
+    provider: '{{ palo_provider }}'
+    if_name: '{{ ae_name }}' # host variable
+    comment: 'Aggregated Ethernet'
+    state: 'present'
+  when: 'create_ae' # host variable
+
+- name: Add members to aggregate interface
+  paloaltonetworks.panos.panos_interface:
+    provider: '{{ palo_provider }}'
+    if_name: '{{ item }}'
+    mode: 'aggregate-group'
+    aggregate_group: '{{ ae_name }}'
+    state: 'present'
+  loop: '{{ ae_members }}' # host variable
+  when: 'create_ae' # host variable
+
+# ETHERNET INTERFACES
+- name: Configure ethernet interface
+  paloaltonetworks.panos.panos_interface:
+    provider: '{{ palo_provider }}'
+    if_name: '{{ item.name }}'
+    ip: '{{ item.ip }}'
+    enable_dhcp: false
+    vr_name: '{{ item.virtual_router | default(omit) }}'
+    zone_name: '{{ item.zone }}'
+    management_profile: '{{ item.mgmt_profile }}'
+    comment: '{{ item.comment }}'
+    state: 'present'
+  loop: '{{ interfaces["eth"] }}' # host variable
+  when: 'create_ethinterfaces' # host variable
+
+# SUBINTERFACES
+- name: Configure subinterface
+  paloaltonetworks.panos.panos_l3_subinterface:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name }}'
+    tag: '{{ item.tag }}'
+    ip: '{{ item.ip }}'
+    enable_dhcp: false
+    vr_name: '{{ item.virtual_router | default(omit) }}'
+    zone_name: '{{ item.zone }}'
+    management_profile: '{{ item.mgmt_profile }}'
+    comment: '{{ item.comment }}'
+    state: 'present'
+  loop: '{{ interfaces["sub"] }}' # host variable
+  when: 'create_subinterfaces' # host variable
+
+# LOOPBACK INTERFACES
+- name: Configure loopback interface
+  paloaltonetworks.panos.panos_loopback_interface:
+    provider: '{{ palo_provider }}'
+    if_name: '{{ item.name }}'
+    ip: '{{ item.ip }}'
+    adjust_tcp_mss: false
+    vr_name: '{{ item.virtual_router | default(omit) }}'
+    zone_name: '{{ item.zone }}'
+    management_profile: '{{ item.mgmt_profile }}'
+    comment: '{{ item.comment }}'
+    state: 'present'
+  loop: '{{ interfaces["loopback"] }}' # host variable
+  when: 'create_loopbackinterfaces' # host variable
+
+...

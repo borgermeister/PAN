@@ -1,0 +1,12 @@
+---
+
+# TAGS
+- name: Create tags
+  paloaltonetworks.panos.panos_tag_object:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name }}'
+    color: '{{ item.color }}'
+    comments: '{{ item.comments }}'
+  loop: '{{ tags }}' # group variable
+
+...

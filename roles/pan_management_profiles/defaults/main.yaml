@@ -1,0 +1,8 @@
+---
+
+# Default variables
+mgmt_profiles:
+  - {name: PING, ping: true, https: false, ssh: false, userid: false, response_pages: false, permitted_ip: []}
+  - {name: Management Profile DEFAULT, ping: true, https: false, ssh: false, userid: false, response_pages: false, permitted_ip: []}
+
+...

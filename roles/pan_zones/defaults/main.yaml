@@ -1,0 +1,10 @@
+---
+
+# Default variables
+create_zones: true
+
+zones: # Ny zone kan ikke ha interface definert da de enda ikke har blitt definert av playbook
+  - {name: INSIDE, interface: [], enable_userid: true, zone_profile: TEMPLATE}
+  - {name: OUTSIDE, interface: [], enable_userid: false, zone_profile: TEMPLATE}
+
+...

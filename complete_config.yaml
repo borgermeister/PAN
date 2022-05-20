@@ -1,0 +1,29 @@
+---
+
+- name: Playbook for provisioning of a Palo Alto firewall
+  hosts: firewalls
+
+  roles:
+    - pan_facts
+#    - pan_device
+#    - pan_virtual_router
+#    - pan_admin_roles
+#    - pan_accounts
+#    - pan_tags
+#    - pan_address_objects
+#    - pan_address_groups
+#    - pan_services
+#    - pan_zone_protection
+#    - pan_zones
+#    - pan_management_profiles
+#    - pan_log_forwarding_profile
+#    - pan_security_profiles
+#    - pan_interfaces
+#    - pan_static_routes
+#    - pan_nat_destination
+#    - pan_nat_source
+#    - pan_security_rules
+#    - pan_commit
+#    - pan_api_key
+
+...
