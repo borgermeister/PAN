@@ -1,5 +1,8 @@
 ---
 
+# Connection variables
+ansible_connection: local
+
 # Palo Alto group variables
 
 log_forwarding_profile: JusticeLeague LFP
