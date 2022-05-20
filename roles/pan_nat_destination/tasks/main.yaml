@@ -1,32 +1,18 @@
 ---
 
 # DESTINATION NAT
-- name: FW01 HTTPS DNAT
+- name: HTTPS DNAT - 4443to443
   paloaltonetworks.panos.panos_nat_rule:
     provider: '{{ palo_provider }}'
-    rule_name: 'FW01 HTTPS DNAT'
+    rule_name: 'HTTPS DNAT'
     group_tag: 'Public Policies'
     source_zone: ['LAN', 'INTERNET']
     destination_zone: 'INTERNET'
     source_ip: 'any'
-    destination_ip: 'VPN.VOCA.NO'
+    destination_ip: 'fw-outside-ip'
     service: 'tcp-4443'
     dnat_address: 'FW01_LOOPBACK999'
     dnat_port: "443"
     state: present
-
-- name: FW01 SSH DNAT
-  paloaltonetworks.panos.panos_nat_rule:
-    provider: '{{ palo_provider }}'
-    rule_name: 'FW01 SSH DNAT'
-    group_tag: 'Public Policies'
-    source_zone: ['LAN', 'INTERNET']
-    destination_zone: 'INTERNET'
-    source_ip: 'any'
-    destination_ip: 'VPN.VOCA.NO'
-    service: 'ssh'
-    dnat_address: 'FW01_LOOPBACK999'
-    dnat_port: "22"
-    state: present
-
+# This role needs some work
 ...
