@@ -16,4 +16,7 @@ galaxy_info:
     - 'paloaltonetworks'
     - 'security'
 
-dependencies: []
+dependencies:
+  - role: pan_tags
+  - role: pan_address_objects
+  - role: pan_address_groups

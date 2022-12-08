@@ -17,6 +17,6 @@ galaxy_info:
     - 'security'
 
 dependencies:
-  - pan_management_profiles
-  - pan_tags
-  - pan_zones
+  - role: pan_management_profiles
+  - role: pan_tags
+  - role: pan_zones

@@ -9,7 +9,7 @@ ae_members:
 
 create_ethinterfaces: true
 create_subinterfaces: false
-create_loopbackinterfaces: true
+create_loopbackinterfaces: false
 
 interfaces:
   eth:

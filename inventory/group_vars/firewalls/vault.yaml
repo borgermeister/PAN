@@ -5,9 +5,6 @@ administrators:
   - admin_user: justiceleague_admin
     admin_pass: AutomationIsKing
     role_profile: securityadmin
-  - admin_user: ansible
-    admin_pass: AutomationIsKing
-    role_profile: ansible
 
 # Certificate
 certifiate_name: globalprotect.justiceleague.local

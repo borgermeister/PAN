@@ -10,4 +10,5 @@ snmp_community: snmp123
 snmp_location: Gotham
 snmp_contact: Bruce Wayne
 
+ansible_python_interpreter: '{{ ansible_playbook_python }}'
 ...
