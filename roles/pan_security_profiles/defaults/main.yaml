@@ -1,6 +1,482 @@
 ---
 
 # Default variables
-security_profiles: changeme
+security_profiles_antivirus:
+  - value: |
+      <entry name="default-antivirus">
+        <description>Default antivirus profile</description>
+        <decoder>
+          <entry name="ftp">
+            <action>default</action>
+            <wildfire-action>default</wildfire-action>
+            <mlav-action>default</mlav-action>
+          </entry>
+          <entry name="http">
+            <action>default</action>
+            <wildfire-action>default</wildfire-action>
+            <mlav-action>default</mlav-action>
+          </entry>
+          <entry name="http2">
+            <action>default</action>
+            <wildfire-action>default</wildfire-action>
+            <mlav-action>default</mlav-action>
+          </entry>
+          <entry name="imap">
+            <action>default</action>
+            <wildfire-action>default</wildfire-action>
+            <mlav-action>default</mlav-action>
+          </entry>
+          <entry name="pop3">
+            <action>default</action>
+            <wildfire-action>default</wildfire-action>
+            <mlav-action>default</mlav-action>
+          </entry>
+          <entry name="smb">
+            <action>default</action>
+            <wildfire-action>default</wildfire-action>
+            <mlav-action>default</mlav-action>
+          </entry>
+          <entry name="smtp">
+            <action>default</action>
+            <wildfire-action>default</wildfire-action>
+            <mlav-action>default</mlav-action>
+          </entry>
+        </decoder>
+        <mlav-engine-filebased-enabled>
+          <entry name="Windows Executables">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
+          <entry name="PowerShell Script 1">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
+          <entry name="PowerShell Script 2">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
+          <entry name="Executable Linked Format">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
+          <entry name="MSOffice">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
+          <entry name="Shell">
+            <mlav-policy-action>enable</mlav-policy-action>
+          </entry>
+        </mlav-engine-filebased-enabled>
+      </entry>
+
+security_profiles_antispyware:
+  - value: |
+      <entry name="default-antispyware">
+        <description>Default anti-spyware profile</description>
+        <rules>
+          <entry name="simple-critical">
+            <action>
+              <reset-both/>
+            </action>
+            <severity>
+              <member>critical</member>
+            </severity>
+            <threat-name>any</threat-name>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+          <entry name="simple-high">
+            <action>
+              <reset-both/>
+            </action>
+            <severity>
+              <member>high</member>
+            </severity>
+            <threat-name>any</threat-name>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+          <entry name="simple-medium">
+            <action>
+              <reset-both/>
+            </action>
+            <severity>
+              <member>medium</member>
+            </severity>
+            <threat-name>any</threat-name>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+          <entry name="simple-informational">
+            <action>
+              <default/>
+            </action>
+            <severity>
+              <member>informational</member>
+            </severity>
+            <threat-name>any</threat-name>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+          <entry name="simple-low">
+            <action>
+              <default/>
+            </action>
+            <severity>
+              <member>low</member>
+            </severity>
+            <threat-name>any</threat-name>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+        </rules>
+        <botnet-domains>
+          <lists>
+            <entry name="default-paloalto-dns">
+              <action>
+                <sinkhole/>
+              </action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+          </lists>
+          <dns-security-categories>
+            <entry name="pan-dns-sec-cc">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-ddns">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-grayware">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-malware">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-parked">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-phishing">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-proxy">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+            <entry name="pan-dns-sec-recent">
+              <log-level>default</log-level>
+              <action>default</action>
+              <packet-capture>disable</packet-capture>
+            </entry>
+          </dns-security-categories>
+          <sinkhole>
+            <ipv4-address>99.99.99.99</ipv4-address>
+            <ipv6-address>::1</ipv6-address>
+          </sinkhole>
+        </botnet-domains>
+      </entry>
+
+security_profiles_vulnerability:
+  - value: |
+      <entry name="default-vulnerability">
+        <description>Default vulnerability profile</description>
+        <rules>
+          <entry name="simple-client-critical">
+            <action>
+              <reset-both/>
+            </action>
+            <vendor-id>
+              <member>any</member>
+            </vendor-id>
+            <severity>
+              <member>critical</member>
+            </severity>
+            <cve>
+              <member>any</member>
+            </cve>
+            <threat-name>any</threat-name>
+            <host>client</host>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+          <entry name="simple-client-high">
+            <action>
+              <reset-both/>
+            </action>
+            <vendor-id>
+              <member>any</member>
+            </vendor-id>
+            <severity>
+              <member>high</member>
+            </severity>
+            <cve>
+              <member>any</member>
+            </cve>
+            <threat-name>any</threat-name>
+            <host>client</host>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+          <entry name="simple-client-medium">
+            <action>
+              <reset-both/>
+            </action>
+            <vendor-id>
+              <member>any</member>
+            </vendor-id>
+            <severity>
+              <member>medium</member>
+            </severity>
+            <cve>
+              <member>any</member>
+            </cve>
+            <threat-name>any</threat-name>
+            <host>client</host>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+          <entry name="simple-client-informational">
+            <action>
+              <default/>
+            </action>
+            <vendor-id>
+              <member>any</member>
+            </vendor-id>
+            <severity>
+              <member>informational</member>
+            </severity>
+            <cve>
+              <member>any</member>
+            </cve>
+            <threat-name>any</threat-name>
+            <host>client</host>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+          <entry name="simple-client-low">
+            <action>
+              <default/>
+            </action>
+            <vendor-id>
+              <member>any</member>
+            </vendor-id>
+            <severity>
+              <member>low</member>
+            </severity>
+            <cve>
+              <member>any</member>
+            </cve>
+            <threat-name>any</threat-name>
+            <host>client</host>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+          <entry name="simple-server-critical">
+            <action>
+              <reset-both/>
+            </action>
+            <vendor-id>
+              <member>any</member>
+            </vendor-id>
+            <severity>
+              <member>critical</member>
+            </severity>
+            <cve>
+              <member>any</member>
+            </cve>
+            <threat-name>any</threat-name>
+            <host>server</host>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+          <entry name="simple-server-high">
+            <action>
+              <reset-both/>
+            </action>
+            <vendor-id>
+              <member>any</member>
+            </vendor-id>
+            <severity>
+              <member>high</member>
+            </severity>
+            <cve>
+              <member>any</member>
+            </cve>
+            <threat-name>any</threat-name>
+            <host>server</host>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+          <entry name="simple-server-medium">
+            <action>
+              <reset-both/>
+            </action>
+            <vendor-id>
+              <member>any</member>
+            </vendor-id>
+            <severity>
+              <member>medium</member>
+            </severity>
+            <cve>
+              <member>any</member>
+            </cve>
+            <threat-name>any</threat-name>
+            <host>server</host>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+          <entry name="simple-server-informational">
+            <action>
+              <default/>
+            </action>
+            <vendor-id>
+              <member>any</member>
+            </vendor-id>
+            <severity>
+              <member>informational</member>
+            </severity>
+            <cve>
+              <member>any</member>
+            </cve>
+            <threat-name>any</threat-name>
+            <host>server</host>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+          <entry name="simple-server-low">
+            <action>
+              <default/>
+            </action>
+            <vendor-id>
+              <member>any</member>
+            </vendor-id>
+            <severity>
+              <member>low</member>
+            </severity>
+            <cve>
+              <member>any</member>
+            </cve>
+            <threat-name>any</threat-name>
+            <host>server</host>
+            <category>any</category>
+            <packet-capture>disable</packet-capture>
+          </entry>
+        </rules>
+      </entry>
+
+security_profiles_url:
+  - value: |
+      <entry name="default-url">
+        <description>Default URL filtering profile</description>
+        <local-inline-cat>yes</local-inline-cat>
+        <credential-enforcement>
+          <mode>
+            <disabled/>
+          </mode>
+          <log-severity>medium</log-severity>
+          <block>
+            <member>abused-drugs</member>
+            <member>adult</member>
+            <member>command-and-control</member>
+            <member>gambling</member>
+            <member>grayware</member>
+            <member>hacking</member>
+            <member>malware</member>
+            <member>phishing</member>
+            <member>questionable</member>
+            <member>ransomware</member>
+            <member>scanning-activity</member>
+            <member>weapons</member>
+          </block>
+        </credential-enforcement>
+        <alert>
+          <member>abortion</member>
+          <member>alcohol-and-tobacco</member>
+          <member>artificial-intelligence</member>
+          <member>auctions</member>
+          <member>business-and-economy</member>
+          <member>computer-and-internet-info</member>
+          <member>content-delivery-networks</member>
+          <member>copyright-infringement</member>
+          <member>cryptocurrency</member>
+          <member>dating</member>
+          <member>dynamic-dns</member>
+          <member>educational-institutions</member>
+          <member>encrypted-dns</member>
+          <member>entertainment-and-arts</member>
+          <member>extremism</member>
+          <member>financial-services</member>
+          <member>games</member>
+          <member>government</member>
+          <member>health-and-medicine</member>
+          <member>high-risk</member>
+          <member>home-and-garden</member>
+          <member>hunting-and-fishing</member>
+          <member>insufficient-content</member>
+          <member>internet-communications-and-telephony</member>
+          <member>internet-portals</member>
+          <member>job-search</member>
+          <member>legal</member>
+          <member>low-risk</member>
+          <member>medium-risk</member>
+          <member>military</member>
+          <member>motor-vehicles</member>
+          <member>music</member>
+          <member>newly-registered-domain</member>
+          <member>news</member>
+          <member>not-resolved</member>
+          <member>nudity</member>
+          <member>online-storage-and-backup</member>
+          <member>parked</member>
+          <member>peer-to-peer</member>
+          <member>personal-sites-and-blogs</member>
+          <member>philosophy-and-political-advocacy</member>
+          <member>private-ip-addresses</member>
+          <member>proxy-avoidance-and-anonymizers</member>
+          <member>real-estate</member>
+          <member>real-time-detection</member>
+          <member>recreation-and-hobbies</member>
+          <member>reference-and-research</member>
+          <member>religion</member>
+          <member>search-engines</member>
+          <member>sex-education</member>
+          <member>shareware-and-freeware</member>
+          <member>shopping</member>
+          <member>social-networking</member>
+          <member>society</member>
+          <member>sports</member>
+          <member>stock-advice-and-tools</member>
+          <member>streaming-media</member>
+          <member>swimsuits-and-intimate-apparel</member>
+          <member>training-and-tools</member>
+          <member>translation</member>
+          <member>travel</member>
+          <member>unknown</member>
+          <member>weapons</member>
+          <member>web-advertisements</member>
+          <member>web-based-email</member>
+          <member>web-hosting</member>
+        </alert>
+        <block>
+          <member>abused-drugs</member>
+          <member>adult</member>
+          <member>command-and-control</member>
+          <member>gambling</member>
+          <member>grayware</member>
+          <member>hacking</member>
+          <member>malware</member>
+          <member>phishing</member>
+          <member>questionable</member>
+          <member>ransomware</member>
+          <member>scanning-activity</member>
+        </block>
+      </entry>
 
 ...
