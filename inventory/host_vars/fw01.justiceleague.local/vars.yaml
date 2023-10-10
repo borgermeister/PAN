@@ -1,12 +1,14 @@
 ---
 
 # Login variables
+
+# Create an environment variable containing either the API key(PANOS_API_KEY) or the password(PANOS_PASSWORD)
+# Comment out either the 'password' or the'api_key'
+
 palo_provider:
   ip_address: '{{ ansible_host }}'
   username: 'ansible'
-#  password: '{{ lookup("ansible.builtin.env", "PANOS_PASSWORD") }}'
-  api_key: '{{ lookup("ansible.builtin.env", "PANOS_API_KEY") }}'
-
-# Comment out either 'password' or 'api_key'
+  password: '{{ lookup("ansible.builtin.env", "PANOS_PASSWORD") }}'
+  # api_key: '{{ lookup("ansible.builtin.env", "PANOS_API_KEY") }}'
 
 ...
