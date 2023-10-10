@@ -7,3 +7,12 @@ desktop.ini
 .Spotlight-V100
 .Trashes
 ._*
+
+# Ansible retry files
+*.retry
+
+# VS Code settings
+.vscode/
+
+# Ansible builder
+/context/
