@@ -3,5 +3,7 @@
 collections:
   - name: paloaltonetworks.panos
     version: '>=2.21.4'
+  - name: networktocode.nautobot
+    version: '>=5.11.0'
 
 ...
