@@ -1,0 +1,13 @@
+---
+
+# CERTIFICATES
+- name: Import certificate
+  paloaltonetworks.panos.panos_import:
+    provider: '{{ palo_provider }}'
+    category: 'keypair'
+    certificate_name: '{{ certificate_name }}'
+    passphrase: '{{ certificate_pass }}'
+    format: 'pkcs12'
+    filename: 'certificate.pfx'
+
+...

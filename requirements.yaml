@@ -1,6 +1,7 @@
 ---
 
 collections:
-  - paloaltonetworks.panos
+  - name: paloaltonetworks.panos
+    version: '>=2.21.4'
 
 ...

@@ -1,0 +1,26 @@
+---
+
+# VIRTUAL ROUTER
+- name: Gather all virtual router names
+  paloaltonetworks.panos.panos_virtual_router:
+    provider: '{{ palo_provider }}'
+    state: gathered
+    gathered_filter: 'name matches-regex (?i).+'
+  register: virtual_router_query
+
+- name: Create a variable containing all virtual router names
+  ansible.builtin.set_fact:
+    virtual_router_exist: '{{ virtual_router_query["gathered"] | community.general.json_query("[*].name") }}'
+
+- name: Create Virtual Router
+  paloaltonetworks.panos.panos_virtual_router:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name }}'
+    interface: '{{ item.interface | default(omit) }}'
+  loop: '{{ virtual_router }}'
+  loop_control:
+    label: '{{ item.name }}'
+  when: 'create_virtual_router and item.name not in virtual_router_exist'
+
+
+...

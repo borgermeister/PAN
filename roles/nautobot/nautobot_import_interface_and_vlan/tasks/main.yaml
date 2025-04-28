@@ -1,0 +1,49 @@
+---
+
+- name: Set facts from Nautobot
+  ansible.builtin.set_fact:
+    nautobot_vars: |
+      query ($device: [String]) {
+        devices(name: $device) {
+          interfaces {
+            name
+            description
+            enabled
+            mtu
+            mode
+            type
+            _custom_field_data
+            ip_addresses {
+              address
+            }
+            tagged_vlans {
+              vid
+            }
+            untagged_vlan {
+              vid
+            }
+            lag {
+              name
+            }
+          }
+          location {
+            vlans {
+              name
+              description
+              vid
+            }
+          }
+        }
+      }
+
+- name: Get info from Nautobot
+  networktocode.nautobot.query_graphql:
+    validate_certs: true
+    url: "{{ nautobot_url }}"
+    token: "{{ nautobot_token }}"
+    query: "{{ nautobot_vars }}"
+    update_hostvars: true
+    graph_variables:
+      device: "{{ inventory_hostname }}"
+
+...

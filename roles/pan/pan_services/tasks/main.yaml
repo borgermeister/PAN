@@ -1,0 +1,16 @@
+---
+
+# SERVICES
+- name: Create service objects
+  paloaltonetworks.panos.panos_service_object:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name }}'
+    protocol: '{{ item.protocol }}'
+    destination_port: '{{ item.dst_port }}'
+    tag: '{{ item.tag | default(omit) }}'
+    description: '{{ item.description }}'
+  loop: '{{ service_objects }}'
+  loop_control:
+    label: '{{ item.name }}'
+
+...

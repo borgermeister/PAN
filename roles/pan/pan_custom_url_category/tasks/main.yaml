@@ -1,0 +1,15 @@
+---
+
+# CUSTOM URL CATEGORIES
+- name: Create custom URL categories
+  paloaltonetworks.panos.panos_custom_url_category:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name }}'
+    description: '{{ item.description }}'
+    url_value: '{{ item.url_value }}'
+    state: 'present'
+  loop: '{{ custom_url_category }}'
+  loop_control:
+    label: '{{ item.name }}'
+
+...

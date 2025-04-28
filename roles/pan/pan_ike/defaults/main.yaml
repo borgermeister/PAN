@@ -1,0 +1,43 @@
+---
+
+# Default variables
+
+panos_ike_crypto_profile:
+  - name: Suite-B-GCM-128
+    dh_group: group19
+    authentication: sha256
+    encryption: aes-128-cbc
+    lifetime_hours: 8
+  - name: Suite-B-GCM-256
+    dh_group: group20
+    authentication: sha384
+    encryption: aes-256-cbc
+    lifetime_hours: 8
+
+# panos_ike_gateway:  # Values are retreived using Nautobot Config Context
+#   - name: IKEv1-Gateway
+#     version: ikev1
+#     interface: ethernet1/1
+#     enable_passive_mode: false
+#     enable_nat_traversal: false
+#     enable_fragmentation: false
+#     enable_liveness_check: true
+#     liveness_check_interval: 5
+#     peer_ip_type: ip  # choices: ['ip', 'dynamic', 'fqdn']
+#     peer_ip_value: 127.0.0.1
+#     enable_dead_peer_detection: false
+#     dead_peer_detection_interval: 99
+#     dead_peer_detection_retry: 10
+#     local_ip_address: 192.168.1.1/24  # Only needed if 'interface' has multiple IP addresses associated with it
+#     local_ip_address_type: ip  # choices: ['ip', 'floating-ip']
+#     pre_shared_key: secretkey  # '{{ lookup("community.general.passwordstore", "ansible/pan/" + "psk_" + inventory_hostname_short + "_peer") }}'
+#     local_id_type: ip  # choices: ['ipaddr', 'fqdn', 'ufqdn', 'keyid', 'dn']
+#     local_id_value: 192.169.1.1  # Required when I(local_id_type) is set
+#     peer_id_type: ip  # choices: ['ipaddr', 'fqdn', 'ufqdn', 'keyid', 'dn']
+#     peer_id_value: 192.169.1.1  # Required when I(local_id_type) is set
+#     peer_id_check: exact  # choices: ['exact', 'wildcard']
+#     ikev1_crypto_profile: default
+#     ikev1_exchange_mode: auto  # choices: ['auto', 'main','aggressive']
+#     ikev2_crypto_profile: default
+
+...

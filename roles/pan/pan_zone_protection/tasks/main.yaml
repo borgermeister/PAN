@@ -1,0 +1,14 @@
+---
+
+# ZONE-PROTECTION
+- name: Create zone-protection profiles
+  paloaltonetworks.panos.panos_type_cmd:
+    provider: '{{ palo_provider }}'
+    cmd: set
+    xpath: |
+      /config/devices/entry[@name='localhost.localdomain']
+      /network/profiles/zone-protection-profile
+    element: '{{ item.value }}'
+  loop: '{{ zone_protection_profiles }}'
+
+...

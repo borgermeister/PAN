@@ -1,0 +1,31 @@
+---
+
+- name: Playbook to configure Palo Alto firewalls - only the active member
+  hosts: krs-proc-fw01-pa0[1-2].esolpcs.net,hry-fw01-pa0[1-2].esolpcs.net
+
+  roles:
+    - role: nautobot/nautobot_import_interface_and_vlan  # Gathers config context, interface and VLANs from Nautobot
+    - role: pan/pan_facts
+    - role: pan/pan_device
+    - role: pan/pan_custom_url_category
+      when: ansible_net_ha_localstate is search("active")
+    - role: pan/pan_services
+      when: ansible_net_ha_localstate is search("active")
+    - role: pan/pan_address_groups
+      when: ansible_net_ha_localstate is search("active")
+    - role: pan/pan_log_forwarding_profile
+      when: ansible_net_ha_localstate is search("active")
+    - role: pan/pan_zone_protection
+      when: ansible_net_ha_localstate is search("active")
+    - role: pan/pan_zones
+      when: ansible_net_ha_localstate is search("active")
+    - role: pan/pan_management_profiles
+      when: ansible_net_ha_localstate is search("active")
+    # - role: pan/pan_interfaces
+    #   when: ansible_net_ha_localstate is search("active")
+    - role: pan/pan_ipsec  # Roles 'pan/pan_interfaces' and 'pan_ike' are dependencies and will be run automatically
+      when: ansible_net_ha_localstate is search("active")
+      # - role: pan/pan_commit
+      #   when: ansible_net_ha_localstate is search("active")
+
+...

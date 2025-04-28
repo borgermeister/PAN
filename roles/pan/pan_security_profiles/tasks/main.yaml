@@ -1,0 +1,61 @@
+---
+
+# SECURITY PROFILES
+
+# ANTIVIRUS
+- name: Create Security Profile Antivirus
+  paloaltonetworks.panos.panos_type_cmd:
+    provider: '{{ palo_provider }}'
+    cmd: set
+    xpath: |
+      /config/devices/entry[@name='localhost.localdomain']
+      /vsys/entry[@name='vsys1']
+      /profiles/virus
+    element: '{{ item.value }}'
+  loop: '{{ security_profiles_antivirus }}'
+  loop_control:
+    label: '{{ item.value }}'
+
+# ANTI-SPYWARE
+- name: Create Security Profile Anti-Spyware
+  paloaltonetworks.panos.panos_type_cmd:
+    provider: '{{ palo_provider }}'
+    cmd: set
+    xpath: |
+      /config/devices/entry[@name='localhost.localdomain']
+      /vsys/entry[@name='vsys1']
+      /profiles/spyware
+    element: '{{ item.value }}'
+  loop: '{{ security_profiles_antispyware }}'
+  loop_control:
+    label: '{{ item.value }}'
+
+# VULNERABILITY
+- name: Create Security Profile Vulnerability
+  paloaltonetworks.panos.panos_type_cmd:
+    provider: '{{ palo_provider }}'
+    cmd: set
+    xpath: |
+      /config/devices/entry[@name='localhost.localdomain']
+      /vsys/entry[@name='vsys1']
+      /profiles/vulnerability
+    element: '{{ item.value }}'
+  loop: '{{ security_profiles_vulnerability }}'
+  loop_control:
+    label: '{{ item.value }}'
+
+# URL-FILTERING
+- name: Create Security Profile URL-Filtering
+  paloaltonetworks.panos.panos_type_cmd:
+    provider: '{{ palo_provider }}'
+    cmd: set
+    xpath: |
+      /config/devices/entry[@name='localhost.localdomain']
+      /vsys/entry[@name='vsys1']
+      /profiles/url-filtering
+    element: '{{ item.value }}'
+  loop: '{{ security_profiles_url }}'
+  loop_control:
+    label: '{{ item.value }}'
+
+...

@@ -1,0 +1,32 @@
+---
+
+# DESTINATION NAT
+- name: FW01 HTTPS DNAT
+  paloaltonetworks.panos.panos_nat_rule2:
+    provider: '{{ palo_provider }}'
+    rule_name: 'FW01 HTTPS DNAT'
+    group_tag: 'Public Policies'
+    source_zone: ['LAN', 'INTERNET']
+    destination_zone: 'INTERNET'
+    source_ip: 'any'
+    destination_ip: 'change.me'
+    service: 'tcp-4443'
+    dnat_address: 'FW01_LOOPBACK999'
+    dnat_port: "443"
+    state: present
+
+- name: FW01 SSH DNAT
+  paloaltonetworks.panos.panos_nat_rule2:
+    provider: '{{ palo_provider }}'
+    rule_name: 'FW01 SSH DNAT'
+    group_tag: 'Public Policies'
+    source_zone: ['LAN', 'INTERNET']
+    destination_zone: 'INTERNET'
+    source_ip: 'any'
+    destination_ip: 'change.me'
+    service: 'ssh'
+    dnat_address: 'FW01_LOOPBACK999'
+    dnat_port: "22"
+    state: present
+
+...

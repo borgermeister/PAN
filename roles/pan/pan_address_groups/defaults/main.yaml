@@ -1,0 +1,23 @@
+---
+
+# Default variables
+address_groups:
+  dynamic:
+    - name: IOC Hosts
+      description: Indicator of Compromise hosts
+      tag: IOC
+      dynamic_value: IOC
+    - name: Sinkhole Hosts
+      description: Clients accessing sinkhole addresses
+      tag: SINKHOLE
+      dynamic_value: SINKHOLE
+  static:
+    - name: GRP4-RFC1918
+      description: RFC1918 networks
+      tag: ADDR-LOCAL
+      static_value:
+        - NET4-CLASS-A
+        - NET4-CLASS-B
+        - NET4-CLASS-C
+
+...

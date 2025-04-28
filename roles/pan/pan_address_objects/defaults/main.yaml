@@ -1,0 +1,13 @@
+---
+
+# Default variables
+# Add 'address_type' if object type is other than 'ip-netmask'
+# Choices are 'ip-netmask', 'fqdn', 'ip-range', 'ip-wildcard'
+address_objects:
+  - {name: NET4-CLASS-A, value: 10.0.0.0/8, description: 'RFC1918 Class A network', tag: ADDR-LOCAL}
+  - {name: NET4-CLASS-B, value: 172.16.0.0/12, description: 'RFC1918 Class B network', tag: ADDR-LOCAL}
+  - {name: NET4-CLASS-C, value: 192.168.0.0/16, description: 'RFC1918 Class C network', tag: ADDR-LOCAL}
+  - {name: NET6-GLOBAL-UNICAST, value: 2000::/3, description: 'IPv6 Global Unicast address', tag: ADDR-GLOBAL}
+  - {name: NET6-LINK-LOCAL, value: fe80::/10, description: 'IPv6 Link-Local address', tag: ADDR-LOCAL}
+
+...

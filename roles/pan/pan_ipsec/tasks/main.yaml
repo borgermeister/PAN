@@ -1,0 +1,32 @@
+---
+
+# IPSEC CRYPTO PROFILES
+- name: Create IPsec Crypto Profiles
+  paloaltonetworks.panos.panos_ipsec_profile:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name }}'
+    esp_encryption: '{{ item.esp_encryption }}'
+    esp_authentication: '{{ item.esp_authentication }}'
+    dh_group: '{{ item.dh_group }}'
+    lifetime_hours: '{{ item.lifetime_hours }}'
+  loop: '{{ panos_ipsec_crypto_profile }}'
+  loop_control:
+    label: '{{ item.name }}'
+
+# IPSEC TUNNELS
+- name: Create IPsec Tunnels
+  when: panos_ipsec_tunnel is defined
+  paloaltonetworks.panos.panos_ipsec_tunnel:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name }}'
+    tunnel_interface: '{{ item.tunnel_interface }}'
+    anti_replay: '{{ item.anti_replay }}'
+    ipv6: '{{ item.ipv6 }}'
+    type: '{{ item.type }}'
+    ak_ike_gateway: '{{ item.ak_ike_gateway }}'
+    ak_ipsec_crypto_profile: '{{ item.ak_ipsec_crypto_profile }}'
+  loop: '{{ panos_ipsec_tunnel }}'
+  loop_control:
+    label: '{{ item.name }}'
+
+...

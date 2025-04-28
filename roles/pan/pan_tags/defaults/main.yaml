@@ -1,0 +1,44 @@
+---
+
+# Default variables
+pan_tags:
+  - {name: ADDR-GLOBAL, color: red, comments: 'Global addresses'}
+  - {name: ADDR-LOCAL, color: green, comments: 'Local addresses'}
+  - {name: Admin Policies, color: green, comments: 'Admin Policies'}
+  - {name: ADMIN, color: green, comments: 'Zone ADMIN'}
+  - {name: ALLOW, color: green, comments: 'Allow Policies'}
+  - {name: DENY, color: red, comments: 'Deny Policies'}
+  - {name: Domain Policies, color: green, comments: 'Domain Policies'}
+  - {name: Global Policies, color: copper, comments: 'Global Policies'}
+  - {name: Internet Policies, color: red, comments: 'Outbound Internet Policies'}
+  - {name: IOC, color: maroon, comments: 'Indicator of Compromise'}
+  - {name: IoT Policies, color: blue, comments: 'IoT network Policies'}
+  - {name: IOT, color: blue, comments: 'Zone IOT'}
+  - {name: IT Policies, color: green, comments: 'IT network Policies'}
+  - {name: IT, color: green, comments: 'Zone IT'}
+  - {name: Lab Policies, color: blue, comments: 'Lab network Policies'}
+  - {name: LAB, color: blue, comments: 'Zone LAB'}
+  - {name: Management Policies, color: green, comments: 'Management network Policies'}
+  - {name: MGMT, color: green, comments: 'Zone MGMT'}
+  - {name: OUTSIDE, color: red, comments: 'Zone OUTSIDE'}
+  - {name: Process Policies, color: blue, comments: 'Process network Policies'}
+  - {name: PROCESS, color: blue, comments: 'Zone PROCESS'}
+  - {name: Public Policies, color: red, comments: 'Inbound Internet Policies'}
+  - {name: SINKHOLE, color: maroon, comments: 'Clients accessing DNS sinkhole'}
+  - {name: SVC Authentication, color: light green, comments: 'Authentication Services'}
+  - {name: SVC Collaboration, color: light green, comments: 'Collaboration Services'}
+  - {name: SVC Email, color: light green, comments: 'Email Services'}
+  - {name: SVC File Access, color: light green, comments: 'File Access Services'}
+  - {name: SVC Network Services, color: light green, comments: 'Network Services'}
+  - {name: SVC Remote Access, color: light green, comments: 'Remote Access Services'}
+  - {name: SVC Tunneling, color: light green, comments: 'Tunneling Services'}
+  - {name: SVC Uncategorized, color: light green, comments: 'Uncategorized Services'}
+  - {name: SVC Web Access, color: light green, comments: 'Web Access Services'}
+  - {name: Technical Policies, color: blue, comments: 'Technical network Policies'}
+  - {name: TECHNICAL, color: blue, comments: 'Zone TECHNICAL'}
+  - {name: TEMPORARY, color: purple, comments: 'Temporary objects or rules'}
+  - {name: User Policies, color: green, comments: 'User Policies'}
+  - {name: VPN Policies, color: orange, comments: 'VPN Policies'}
+  - {name: VPN, color: orange, comments: 'Zone VPN'}
+
+...

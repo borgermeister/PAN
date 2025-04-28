@@ -1,0 +1,49 @@
+---
+
+# IKE CRYPTO PROFILES
+- name: Create IKE Crypto Profiles
+  paloaltonetworks.panos.panos_ike_crypto_profile:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name }}'
+    dh_group: '{{ item.dh_group }}'
+    authentication: '{{ item.authentication }}'
+    encryption: '{{ item.encryption }}'
+    lifetime_hours: '{{ item.lifetime_hours }}'
+  loop: '{{ panos_ike_crypto_profile }}'
+  loop_control:
+    label: '{{ item.name }}'
+
+# IKE GATEWAYS
+- name: Create IKE Gateways
+  when: panos_ike_gateway is defined
+  paloaltonetworks.panos.panos_ike_gateway:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name }}'
+    version: '{{ item.version }}'
+    interface: '{{ item.interface }}'
+    enable_passive_mode: '{{ item.enable_passive_mode }}'
+    enable_nat_traversal: '{{ item.enable_nat_traversal }}'
+    enable_fragmentation: '{{ item.enable_fragmentation }}'
+    enable_liveness_check: '{{ item.enable_liveness_check }}'
+    liveness_check_interval: '{{ item.liveness_check_interval }}'
+    peer_ip_type: '{{ item.peer_ip_type }}'
+    peer_ip_value: '{{ item.peer_ip_value }}'
+    enable_dead_peer_detection: '{{ item.enable_dead_peer_detection }}'
+    dead_peer_detection_interval: '{{ item.dead_peer_detection_interval }}'
+    dead_peer_detection_retry: '{{ item.dead_peer_detection_retry }}'
+    local_ip_address: '{{ item.local_ip_address }}'
+    local_ip_address_type: '{{ item.local_ip_address_type }}'
+    pre_shared_key: '{{ item.pre_shared_key }}'
+    local_id_type: '{{ item.local_id_type }}'
+    local_id_value: '{{ item.local_id_value }}'
+    peer_id_type: '{{ item.peer_id_type }}'
+    peer_id_value: '{{ item.peer_id_value }}'
+    peer_id_check: '{{ item.peer_id_check }}'
+    ikev1_crypto_profile: '{{ item.ikev1_crypto_profile }}'
+    ikev1_exchange_mode: '{{ item.ikev1_exchange_mode }}'
+    ikev2_crypto_profile: '{{ item.ikev2_crypto_profile }}'
+  loop: '{{ panos_ike_gateway }}'
+  loop_control:
+    label: '{{ item.name }}'
+
+...

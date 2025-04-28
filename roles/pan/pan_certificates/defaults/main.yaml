@@ -1,0 +1,8 @@
+---
+
+# Default variables
+
+certificate_name: changeme
+certificate_pass: secretpass
+
+...

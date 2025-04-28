@@ -1,0 +1,10 @@
+---
+
+# Default variables
+domain_name: changeme.lan
+dns_primary: 1.1.1.1
+dns_secondary: 8.8.8.8
+ntp_primary: 0.no.pool.ntp.org
+ntp_secondary: 1.no.pool.ntp.org
+
+...

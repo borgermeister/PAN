@@ -1,0 +1,110 @@
+---
+
+# AGGREGATED INTERFACES
+- name: Create aggregate interface
+  paloaltonetworks.panos.panos_aggregate_interface:
+    provider: '{{ palo_provider }}'
+    if_name: '{{ item.name }}'
+    comment: '{{ item.description }}'
+    lacp_enable: true
+    lacp_mode: 'active'
+    lacp_passive_pre_negotiation: true
+    state: 'present'
+  loop: '{{ devices[0]["interfaces"] }}'  # This loop is used when Nautobot is the source of truth
+  loop_control:
+    label: '{{ item.name }}'
+  when:
+    - item.type is regex("LAG")
+
+- name: Add members to aggregate interface
+  paloaltonetworks.panos.panos_interface:
+    provider: '{{ palo_provider }}'
+    if_name: '{{ item.name }}'
+    mode: 'aggregate-group'
+    aggregate_group: '{{ item.lag | community.general.json_query("name") }}'
+    state: 'present'
+  loop: '{{ devices[0]["interfaces"] }}'
+  loop_control:
+    label: '{{ item.name }}'
+  when:
+    - item.lag
+    - item.name is regex("ethernet\d+\/\d+")
+
+# ETHERNET INTERFACES
+- name: Configure ethernet interface
+  paloaltonetworks.panos.panos_interface:
+    provider: '{{ palo_provider }}'
+    if_name: '{{ item.name }}'
+    ip: '{{ item.ip_addresses | community.general.json_query("[].address | [0]") | default(omit) }}'
+    enable_dhcp: false
+    vr_name: '{{ item["_custom_field_data"]["interface_virtual_router"] | default(omit) }}'
+    zone_name: '{{ item["_custom_field_data"]["interface_security_zone"] | default(omit) }}'
+    management_profile: '{{ item["_custom_field_data"]["interface_management_profile"] | default(omit) }}'
+    comment: '{{ item.description }}'
+    state: 'present'
+  loop: '{{ devices[0]["interfaces"] }}'
+  # loop: '{{ interfaces["eth"] }}'  # Used when the variables is located under the role
+  loop_control:
+    label: '{{ item.name }}'
+  when:
+    - item.name is regex("ethernet\d+\/\d+")
+    - item.ip_addresses | length > 0
+
+# SUBINTERFACES
+- name: Configure subinterface
+  paloaltonetworks.panos.panos_l3_subinterface:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name }}'
+    tag: '{{ item.untagged_vlan | community.general.json_query("vid") }}'
+    ip: '{{ item.ip_addresses | community.general.json_query("[].address | [0]") | default(omit) }}'
+    enable_dhcp: false
+    vr_name: '{{ item["_custom_field_data"]["interface_virtual_router"] | default(omit) }}'
+    zone_name: '{{ item["_custom_field_data"]["interface_security_zone"] | default(omit) }}'
+    management_profile: '{{ item["_custom_field_data"]["interface_management_profile"] | default(omit) }}'
+    comment: '{{ item.description }}'
+    state: 'present'
+  loop: '{{ devices[0]["interfaces"] }}'
+  loop_control:
+    label: '{{ item.name }}'
+  when:
+    - item.name is regex("ae\d+\.")
+    - ansible_net_ha_localstate is search("active")
+
+# LOOPBACK INTERFACES
+- name: Configure loopback interface
+  paloaltonetworks.panos.panos_loopback_interface:
+    provider: '{{ palo_provider }}'
+    if_name: '{{ item.name }}'
+    ip: '{{ item.ip_addresses | community.general.json_query("[].address | [0]") }}'
+    adjust_tcp_mss: false
+    vr_name: '{{ item["_custom_field_data"]["interface_virtual_router"] | default(omit) }}'
+    zone_name: '{{ item["_custom_field_data"]["interface_security_zone"] | default(omit) }}'
+    management_profile: '{{ item["_custom_field_data"]["interface_management_profile"] | default(omit) }}'
+    comment: '{{ item.description }}'
+    state: 'present'
+  loop: '{{ devices[0]["interfaces"] }}'
+  loop_control:
+    label: '{{ item.name }}'
+  when:
+    - item.name is regex("loopback\.\d+")
+    - ansible_net_ha_localstate is search("active")
+
+# TUNNEL INTERFACES
+- name: Configure tunnel interface
+  paloaltonetworks.panos.panos_tunnel:
+    provider: '{{ palo_provider }}'
+    if_name: '{{ item.name }}'
+    ip: '{{ item.ip_addresses | community.general.json_query("[].address | [0]") }}'
+    vr_name: '{{ item["_custom_field_data"]["interface_virtual_router"] | default(omit) }}'
+    zone_name: '{{ item["_custom_field_data"]["interface_security_zone"] | default(omit) }}'
+    management_profile: '{{ item["_custom_field_data"]["interface_management_profile"] | default(omit) }}'
+    comment: '{{ item.description }}'
+    state: 'present'
+  loop: '{{ devices[0]["interfaces"] }}'
+  loop_control:
+    label: '{{ item.name }}'
+  when:
+    - item.name is regex("tunnel\.\d+")
+    - ansible_net_ha_localstate is search("active")
+
+...

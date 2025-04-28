@@ -1,0 +1,21 @@
+---
+
+# SECURITY RULES
+- name: Sinkhole - Block
+  paloaltonetworks.panos.panos_security_rule:
+    provider: '{{ palo_provider }}'
+    rule_name: 'Sinkhole - Block'
+    description: 'Deny traffic from hosts tagged with SINKHOLE'
+    group_tag: 'Internet Policies'
+    tag_name: ['DENY', 'SINKHOLE']
+    source_zone: ['INSIDE']
+    source_ip: ['Sinkhole Hosts']
+    destination_zone: ['OUTSIDE']
+    destination_ip: ['any']
+    application: ['any']
+    action: deny
+    log_end: true
+    log_setting: '{{ log_forwarding_profile }}'
+    state: present
+
+...

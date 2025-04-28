@@ -1,0 +1,29 @@
+---
+
+# ADDRESS GROUPS DYNAMIC
+- name: Create dynamic address groups
+  paloaltonetworks.panos.panos_address_group:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name | default(omit) }}'
+    dynamic_value: '{{ item.dynamic_value | default(omit) }}'
+    tag: '{{ item.tag | default(omit) }}'
+    description: '{{ item.description | default(omit) }}'
+    state: 'present'
+  loop: '{{ address_groups["dynamic"] }}'
+  loop_control:
+    label: '{{ item.name }}'
+
+# ADDRESS GROUPS STATIC
+- name: Create static address groups
+  paloaltonetworks.panos.panos_address_group:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name | default(omit) }}'
+    static_value: '{{ item.static_value | default(omit) }}'
+    tag: '{{ item.tag | default(omit) }}'
+    description: '{{ item.description | default(omit) }}'
+    state: 'present'
+  loop: '{{ address_groups["static"] }}'
+  loop_control:
+    label: '{{ item.name }}'
+
+...

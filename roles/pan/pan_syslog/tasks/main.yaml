@@ -1,0 +1,31 @@
+---
+
+# SYSLOG PROFILES
+- name: Create Syslog Profiles
+  paloaltonetworks.panos.panos_syslog_profile:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name }}'
+    config: '{{ item.config }}'
+    system: '{{ item.system }}'
+    threat: '{{ item.threat }}'
+    traffic: '{{ item.traffic }}'
+    url: '{{ item.url }}'
+  loop: '{{ panos_syslog_profile }}'
+  loop_control:
+    label: '{{ item.name }}'
+
+# SYSLOG SERVERS
+- name: Create Syslog Servers
+  paloaltonetworks.panos.panos_syslog_server:
+    provider: '{{ palo_provider }}'
+    syslog_profile: '{{ item.syslog_profile }}'
+    name: '{{ item.name }}'
+    server: '{{ item.server }}'
+    port: '{{ item.port }}'
+    transport: '{{ item.transport }}'
+    format: '{{ item.format }}'
+  loop: '{{ panos_syslog_server }}'
+  loop_control:
+    label: '{{ item.name }}'
+
+...

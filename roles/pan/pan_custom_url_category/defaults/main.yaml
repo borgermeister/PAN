@@ -1,0 +1,11 @@
+---
+
+# Default variables
+custom_url_category:
+  - name: 'Windows Update'
+    description: 'Windows Update URL list'
+    url_value:
+      - 'windowsupdate.microsoft.com/'
+      - '*.windowsupdate.microsoft.com/'
+
+...

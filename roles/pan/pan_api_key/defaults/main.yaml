@@ -1,0 +1,8 @@
+---
+
+# Default variables
+
+# Get API key for ansible user account
+# curl -k -X GET "https://<pan_ip_or_url>/api/?type=keygen&user=<username>&password=<password>"
+
+...

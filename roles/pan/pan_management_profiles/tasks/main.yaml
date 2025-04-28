@@ -1,0 +1,20 @@
+---
+
+# MANAGEMENT PROFILES
+- name: Create management profiles
+  paloaltonetworks.panos.panos_management_profile:
+    provider: '{{ palo_provider }}'
+    name: '{{ item.name }}'
+    ping: '{{ item.ping }}'
+    https: '{{ item.https }}'
+    ssh: '{{ item.ssh }}'
+    snmp: '{{ item.snmp }}'
+    userid_service: '{{ item.userid }}'
+    response_pages: '{{ item.response_pages }}'
+    permitted_ip: '{{ item.permitted_ip | default(omit) }}'
+    state: 'present'
+  loop: '{{ mgmt_profiles }}'
+  loop_control:
+    label: '{{ item.name }}'
+
+...

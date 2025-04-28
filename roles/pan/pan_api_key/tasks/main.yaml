@@ -1,0 +1,15 @@
+---
+
+# API-KEY
+- name: Retrieve API key
+  paloaltonetworks.panos.panos_api_key:
+    provider: '{{ palo_provider }}'
+  register: 'output'
+
+- name: Display API key
+  ansible.builtin.debug:
+    msg: '{{ output.api_key }}'
+    #   verbosity: 1
+    # no_log: false
+
+...

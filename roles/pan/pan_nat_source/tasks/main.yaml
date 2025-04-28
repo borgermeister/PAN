@@ -1,0 +1,17 @@
+---
+
+# SOURCE NAT
+- name: Default IA SNAT - LAN
+  paloaltonetworks.panos.panos_nat_rule2:
+    provider: '{{ palo_provider }}'
+    rule_name: Default IA SNAT - LAN
+    group_tag: Internet Policies
+    source_zone: INSIDE
+    destination_zone: OUTSIDE
+    source_ip: GRP4_RFC1918
+    destination_ip: any
+    snat_type: dynamic-ip-and-port
+    snat_interface: ethernet1/1
+    state: present
+
+...

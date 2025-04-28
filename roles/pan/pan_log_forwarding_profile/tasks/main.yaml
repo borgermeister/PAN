@@ -1,0 +1,40 @@
+---
+
+# LOG FORWARDING PROFILE
+- name: Create log forwarding profile
+  paloaltonetworks.panos.panos_log_forwarding_profile:
+    provider: '{{ palo_provider }}'
+    name: '{{ log_forwarding_profile }}'
+    enhanced_logging: true
+
+# LOG FORWARDING PROFILE MATCH LIST
+- name: Create log forwarding profile match list
+  paloaltonetworks.panos.panos_log_forwarding_profile_match_list:
+    provider: '{{ palo_provider }}'
+    log_forwarding_profile: '{{ log_forwarding_profile }}'
+    name: '{{ item.name }}'
+    description: '{{ item.description }}'
+    log_type: '{{ item.log_type }}'
+    filter: '{{ item.filter }}'
+    syslog_profiles: '{{ item.syslog_profiles }}'
+  loop: '{{ log_forwarding_match_list }}'
+  loop_control:
+    label: '{{ item.name }}'
+
+# LOG FORWARDING PROFILE MATCH LIST ACTION
+- name: Create log forwarding profile match list action
+  paloaltonetworks.panos.panos_log_forwarding_profile_match_list_action:
+    provider: '{{ palo_provider }}'
+    log_forwarding_profile: '{{ log_forwarding_profile }}'
+    log_forwarding_profile_match_list: '{{ item.log_forwarding_profile_match_list }}'
+    name: '{{ item.name }}'
+    action: '{{ item.action }}'
+    target: '{{ item.target }}'
+    registration: '{{ item.registration }}'
+    tags: '{{ item.tags }}'
+    timeout: '{{ item.timeout }}'
+  loop: '{{ log_forwarding_match_list_action }}'
+  loop_control:
+    label: '{{ item.name }}'
+
+...

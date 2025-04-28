@@ -1,0 +1,42 @@
+---
+
+# Default variables
+log_forwarding_profile: changeme
+
+log_forwarding_match_list:
+  - name: 'DNS Sinkhole'
+    description: 'Tag clients accessing sinkhole IP'
+    log_type: 'traffic'
+    filter: '( addr.dst in 99.99.99.99 )'
+    syslog_profiles: []
+  - name: 'All traffic to syslog'
+    description: 'All traffic logs to syslog'
+    log_type: 'traffic'
+    filter: 'All Logs'
+    syslog_profiles: ['changeme']
+  - name: 'All threat to syslog'
+    description: 'All threat logs to syslog'
+    log_type: 'threat'
+    filter: 'All Logs'
+    syslog_profiles: ['changeme']
+  - name: 'All URL to syslog'
+    description: 'All URL logs to syslog'
+    log_type: 'url'
+    filter: 'All Logs'
+    syslog_profiles: ['changeme']
+  - name: 'All auth to syslog'
+    description: 'All auth logs to syslog'
+    log_type: 'auth'
+    filter: 'All Logs'
+    syslog_profiles: ['changeme']
+
+log_forwarding_match_list_action:
+  - name: 'Tag source - SINKHOLE'
+    log_forwarding_profile_match_list: 'DNS Sinkhole'
+    action: 'add-tag'
+    target: 'source-address'
+    registration: 'localhost'
+    tags: ['SINKHOLE']
+    timeout: 300
+
+...

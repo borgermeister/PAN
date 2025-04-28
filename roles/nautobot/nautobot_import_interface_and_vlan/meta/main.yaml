@@ -1,0 +1,17 @@
+---
+
+galaxy_info:
+  role_name: nautobot_import_interface_and_vlan
+  author: Bjørn-Vegar Borge
+  description: Role to import interfaces and VLANs from Nautobot
+  company: Netsecurity
+
+  license: MIT
+
+  min_ansible_version: "2"
+
+collections:
+  - networktocode.nautobot
+  - community.general
+
+...

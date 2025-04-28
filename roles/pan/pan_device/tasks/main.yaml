@@ -1,0 +1,15 @@
+---
+
+# DEVICE
+- name: Basic device setup
+  paloaltonetworks.panos.panos_mgtconfig:
+    provider: '{{ palo_provider }}'
+    hostname: '{{ inventory_hostname_short }}'
+    domain: '{{ domain_name }}'
+    dns_server_primary: '{{ dns_primary }}'
+    dns_server_secondary: '{{ dns_secondary }}'
+    ntp_server_primary: '{{ ntp_primary }}'
+    ntp_server_secondary: '{{ ntp_secondary | default(omit) }}'
+    timezone: 'Europe/Oslo'
+
+...

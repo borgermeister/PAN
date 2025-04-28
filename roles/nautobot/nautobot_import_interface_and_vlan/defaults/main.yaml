@@ -1,0 +1,10 @@
+---
+
+# Connection variables
+ansible_connection: local
+
+# Nautobot connection variables
+nautobot_url: '{{ lookup("community.general.passwordstore", "ansible/nautobot/url") }}'
+nautobot_token: '{{ lookup("community.general.passwordstore", "ansible/nautobot/token") }}'
+
+...

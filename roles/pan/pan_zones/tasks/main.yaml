@@ -1,0 +1,29 @@
+---
+
+# ZONES
+- name: Gather all zone names
+  paloaltonetworks.panos.panos_zone:
+    provider: '{{ palo_provider }}'
+    state: gathered
+    gathered_filter: 'zone matches-regex (?i).+'
+  register: zone_query
+
+- name: Create a variable containing all zone names
+  ansible.builtin.set_fact:
+    zone_exist: '{{ zone_query["gathered"] | community.general.json_query("[*].zone") }}'
+
+- name: Create zones only if not exist
+  paloaltonetworks.panos.panos_zone:
+    provider: '{{ palo_provider }}'
+    zone: '{{ item.name }}'
+    mode: 'layer3'
+    interface: '{{ item.interface | default(omit) }}'  # Interfaces will be added with role 'pan_interfaces'
+    enable_userid: '{{ item.enable_userid | default(omit) }}'  # Device-ID is not supported
+    zone_profile: '{{ item.zone_profile | default(omit) }}'
+    state: 'present'
+  loop: '{{ zones }}'
+  loop_control:
+    label: '{{ item.name }}'
+  when: item.name not in zone_exist
+
+...

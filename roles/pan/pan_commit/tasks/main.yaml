@@ -1,0 +1,9 @@
+---
+
+# #COMMIT
+- name: Commit changes by specified admins
+  paloaltonetworks.panos.panos_commit_firewall:
+    provider: '{{ palo_provider }}'
+    admins: ['{{ palo_provider["username"] }}']
+
+...

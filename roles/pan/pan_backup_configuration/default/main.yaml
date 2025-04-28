@@ -1,0 +1,7 @@
+---
+
+# Default variables
+
+firewall_backup_directory: /tmp
+
+...

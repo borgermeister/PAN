@@ -1,0 +1,82 @@
+---
+
+# Default variables
+
+zone_protection_profiles:
+  - value: |
+      <entry name="DEFAULT">
+        <flood>
+          <tcp-syn>
+            <enable>yes</enable>
+            <red>
+              <alarm-rate>1000</alarm-rate>
+              <activate-rate>2000</activate-rate>
+              <maximal-rate>5000</maximal-rate>
+            </red>
+          </tcp-syn>
+          <udp>
+            <enable>yes</enable>
+            <red>
+              <alarm-rate>1000</alarm-rate>
+              <activate-rate>2000</activate-rate>
+              <maximal-rate>5000</maximal-rate>
+            </red>
+          </udp>
+          <icmp>
+            <enable>yes</enable>
+            <red>
+              <alarm-rate>1000</alarm-rate>
+              <activate-rate>2000</activate-rate>
+              <maximal-rate>5000</maximal-rate>
+            </red>
+          </icmp>
+          <icmpv6>
+            <enable>yes</enable>
+            <red>
+              <alarm-rate>1000</alarm-rate>
+              <activate-rate>2000</activate-rate>
+              <maximal-rate>5000</maximal-rate>
+            </red>
+          </icmpv6>
+          <other-ip>
+            <enable>yes</enable>
+            <red>
+              <alarm-rate>1000</alarm-rate>
+              <activate-rate>2000</activate-rate>
+              <maximal-rate>5000</maximal-rate>
+            </red>
+          </other-ip>
+        </flood>
+        <scan>
+          <entry name="8003">
+            <action>
+              <block-ip>
+                <track-by>source-and-destination</track-by>
+                <duration>60</duration>
+              </block-ip>
+            </action>
+            <interval>2</interval>
+            <threshold>50</threshold>
+          </entry>
+          <entry name="8001">
+            <action>
+              <block-ip>
+                <track-by>source-and-destination</track-by>
+                <duration>60</duration>
+              </block-ip>
+            </action>
+            <interval>2</interval>
+            <threshold>50</threshold>
+          </entry>
+          <entry name="8002">
+            <action>
+              <alert/>
+            </action>
+            <interval>2</interval>
+            <threshold>200</threshold>
+          </entry>
+        </scan>
+        <discard-icmp-large-packet>yes</discard-icmp-large-packet>
+      </entry>
+
+...

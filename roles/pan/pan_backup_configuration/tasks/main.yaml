@@ -1,0 +1,16 @@
+---
+
+# FACTS - Config
+- name: Gather facts
+  paloaltonetworks.panos.panos_facts:
+    provider: '{{ palo_provider }}'
+    gather_subset:
+      - 'config'
+
+- name: Backup configuration - (Palo Alto)
+  ansible.builtin.copy:
+    content: '{{ ansible_net_config }}'
+    dest: '{{ firewall_backup_directory }}/{{ inventory_hostname_short }}.cfg'
+    mode: '0644'
+
+...
